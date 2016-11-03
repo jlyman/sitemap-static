@@ -21,6 +21,7 @@ module.exports = function(stream, o) {
   //   findRoot - string
   //   ignoreFile - string
   //   prefix - string
+  //   stripRoot - bool
   // }
   o = o || {};
 
@@ -55,7 +56,7 @@ module.exports = function(stream, o) {
       }
 
       stream.write(indent(1) + '<url>\n' + indent(2) +
-        '<loc>' + prefix + file + '</loc>\n' +
+        '<loc>' + prefix + file.substring(o.stripRoot && o.findRoot ? o.findRoot.length : 0) + '</loc>\n' +
         indent(1) + '</url>');
 
   });
